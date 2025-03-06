@@ -20,21 +20,11 @@ import {
 import {
   getAllowedEvmChains,
   SupportedEvmChain,
-  supportedEvmChainIdsSchema,
 } from "../network";
-import { z } from "zod";
 import BigNumber from "bignumber.js";
 import { Address } from "viem";
 import { match } from "ts-pattern";
-
-const withdrawEvmSchema = z.object({
-  chain_name: supportedEvmChainIdsSchema,
-  amount: z.string(),
-});
-const withdrawSolanaSchema = z.object({
-  chain_name: z.literal("solana"),
-  amount: z.string(),
-});
+import { withdrawEvmSchema, withdrawSolanaSchema } from "../environment";
 
 const withdrawTemplate = (allowedChains: string[]) => `
 {{recentMessages}}

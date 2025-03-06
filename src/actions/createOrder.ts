@@ -16,40 +16,11 @@ import {
   getAllowedSymbols,
   getOrderlyKey,
 } from "../helpers";
-import { getAllowedEvmChains, supportedEvmChainIdsSchema } from "../network";
-import { z } from "zod";
+import { getAllowedEvmChains } from "../network";
 import { OrderEntity, OrderSide } from "@orderly.network/types";
 import { OrderType } from "@orderly.network/types";
 import { match } from "ts-pattern";
-
-const createOrderEvmSchema = z.object({
-  chain_name: supportedEvmChainIdsSchema,
-  symbol: z.string(),
-  order_type: z.nativeEnum(OrderType),
-  order_price: z
-    .string()
-    .transform((value) => value || undefined)
-    .optional(),
-  order_quantity: z
-    .string()
-    .transform((value) => value || undefined)
-    .optional(),
-  side: z.nativeEnum(OrderSide),
-});
-const createOrderSolanaSchema = z.object({
-  chain_name: z.literal("solana"),
-  symbol: z.string(),
-  order_type: z.nativeEnum(OrderType),
-  order_price: z
-    .string()
-    .transform((value) => value || undefined)
-    .optional(),
-  order_quantity: z
-    .string()
-    .transform((value) => value || undefined)
-    .optional(),
-  side: z.nativeEnum(OrderSide),
-});
+import { createOrderEvmSchema, createOrderSolanaSchema } from "../environment";
 
 const createOrderTemplate = (
   allowedChains: string[],

@@ -1,5 +1,5 @@
 import { match } from "ts-pattern";
-import { bytesToHex, encodeAbiParameters, encodePacked } from "viem";
+import { encodeAbiParameters, encodePacked } from "viem";
 import bs58 from "bs58";
 
 import {

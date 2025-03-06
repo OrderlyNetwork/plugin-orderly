@@ -1,7 +1,7 @@
 import { IAgentRuntime } from "@elizaos/core";
 import { API } from "@orderly.network/types";
 import * as viemChains from "viem/chains";
-import { z } from "zod";
+import { supportedEvmChainIds } from "./environment";
 
 type Chain = {
   network: "mainnet" | "testnet";
@@ -26,24 +26,6 @@ export type SupportedEvmChain =
   | "mantleSepoliaTestnet"
   | "seiDevnet"
   | "avalancheFuji";
-
-export const supportedEvmChainIdsSchema = z.enum([
-  "mainnet",
-  "arbitrum",
-  "optimism",
-  "base",
-  "mantle",
-  "sei",
-  "avalanche",
-  "sepolia",
-  "arbitrumSepolia",
-  "optimismSepolia",
-  "baseSepolia",
-  "mantleSepoliaTestnet",
-  "seiDevnet",
-  "avalancheFuji",
-]);
-export const supportedEvmChainIds = supportedEvmChainIdsSchema.options;
 
 export const supportedEvmChains: Record<SupportedEvmChain, Chain> = {
   mainnet: {

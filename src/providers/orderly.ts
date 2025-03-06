@@ -7,7 +7,7 @@ import {
 } from "@elizaos/core";
 import { WalletProvider } from "@elizaos/plugin-evm";
 import { Chain } from "viem/chains";
-import { Address, createPublicClient, erc20Abi } from "viem";
+import { createPublicClient, erc20Abi } from "viem";
 import { http } from "viem";
 import {
   getAccountId,

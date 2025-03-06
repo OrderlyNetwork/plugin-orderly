@@ -22,7 +22,6 @@ import {
 import {
   getAllowedEvmChains,
   SupportedEvmChain,
-  supportedEvmChainIdsSchema,
   solanaChainInfo,
   solanaDevnetChainInfo,
 } from "../network";
@@ -35,7 +34,6 @@ import {
   erc20Abi,
   http,
 } from "viem";
-import { z } from "zod";
 import BigNumber from "bignumber.js";
 import { privateKeyToAccount } from "viem/accounts";
 import { match } from "ts-pattern";
@@ -46,15 +44,7 @@ import {
   VersionedTransaction,
   clusterApiUrl,
 } from "@solana/web3.js";
-
-const depositEvmSchema = z.object({
-  chain_name: supportedEvmChainIdsSchema,
-  amount: z.string(),
-});
-const depositSolanaSchema = z.object({
-  chain_name: z.literal("solana"),
-  amount: z.string(),
-});
+import { depositEvmSchema, depositSolanaSchema } from "../environment";
 
 const depositTemplate = (allowedChains: string[]) => `
 {{recentMessages}}

@@ -17,20 +17,11 @@ import {
   getOrderlyKey,
   getPosition,
 } from "../helpers";
-import { getAllowedEvmChains, supportedEvmChainIdsSchema } from "../network";
-import { z } from "zod";
+import { getAllowedEvmChains } from "../network";
 import { API, OrderSide } from "@orderly.network/types";
 import { OrderType } from "@orderly.network/types";
 import { match } from "ts-pattern";
-
-const closePositionEvmSchema = z.object({
-  chain_name: supportedEvmChainIdsSchema,
-  symbol: z.string(),
-});
-const closePositionSolanaSchema = z.object({
-  chain_name: z.literal("solana"),
-  symbol: z.string(),
-});
+import { closePositionEvmSchema, closePositionSolanaSchema } from "../environment";
 
 const closePositionTemplate = (
   allowedChains: string[],
